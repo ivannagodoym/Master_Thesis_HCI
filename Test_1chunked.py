@@ -6,7 +6,7 @@ import openai
 pd.set_option('display.max_colwidth', None)
 
 # Data Processing:
-data_path = "/Users/ivannagodoymunoz/Library/Mobile Documents/com~apple~CloudDocs/TUM/Master Thesis/Testing"
+data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 chunk_size = 15  # Define the size of each chunk
 thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data_sorted.csv", sep=",", chunksize=chunk_size, iterator=True)
 

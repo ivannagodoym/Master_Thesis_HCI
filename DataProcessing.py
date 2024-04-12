@@ -7,7 +7,7 @@ test2_data = pd.DataFrame(
     columns=['conv_id', 'emotion_label', 'context', 'original_listener_response'])
 
 #Thesis dataframe
-data_path = "/Users/ivannagodoymunoz/Library/Mobile Documents/com~apple~CloudDocs/TUM/Master Thesis/Testing"
+data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 data = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",",on_bad_lines='skip')
 thesis_df = pd.DataFrame(data)
 thesis_df_sorted = thesis_df.sort_values(by='conv_id')

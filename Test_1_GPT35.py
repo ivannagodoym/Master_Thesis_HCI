@@ -6,7 +6,7 @@ import openai
 pd.set_option('display.max_colwidth', None)
 
 #Data Processing:
-data_path = "/Users/ivannagodoymunoz/Library/Mobile Documents/com~apple~CloudDocs/TUM/Master Thesis/Testing"
+data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 
 thesis_df = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",",on_bad_lines='skip')
 #thesis_df_sorted = thesis_df.sort_values(by='conv_id')

@@ -1,16 +1,6 @@
 conv_id,original_labels,top_3_emotions_responses,top_1_emotion_responses,position_of_original_label
-hit:0_conv:1,sentimental,"['nostalgic', ' sentimental', ' content']",nostalgic,2.0
-hit:10000_conv:20000,surprised,"['surprised', ' content', ' confident']",surprised,1.0
-hit:10000_conv:20001,impressed,"['content', ' confident', ' trusting']",content,
-hit:10002_conv:20005,guilty,"['guilty', ' anxious', ' confident']",guilty,1.0
-hit:10004_conv:20008,surprised,"['surprised', ' content', ' sentimental']",surprised,1.0
-hit:10005_conv:20010,content,"['content', ' confident', ' trusting']",content,1.0
-hit:10005_conv:20011,furious,"['furious', ' anxious', ' content']",furious,1.0
-hit:10006_conv:20012,afraid,"['anxious', ' afraid', ' guilty']",anxious,2.0
-hit:10007_conv:20014,nostalgic,"['nostalgic', ' content', ' surprised']",nostalgic,1.0
-hit:10008_conv:20016,anxious,"['anxious', ' content', ' confident']",anxious,1.0
-hit:10010_conv:20021,confident,"['confident', ' content', ' trusting']",confident,1.0
-hit:10011_conv:20022,anxious,"['confident', ' content', ' excited']",confident,
-hit:10011_conv:20023,trusting,"['confident', ' content', ' trusting']",confident,3.0
-hit:10012_conv:20024,content,"['content', ' confident', ' trusting']",content,1.0
-hit:10013_conv:20026,guilty,"['guilty', ' anxious', ' confident']",guilty,1.0
+hit:0_conv:1,sentimental,"['sentimental', ' guilty', ' surprised']",sentimental,1
+hit:10000_conv:20000,surprised,"['happy', ' surprised', ' impressed']",happy,2
+hit:10000_conv:20001,impressed,"['impressed', ' happy', ' surprised']",impressed,1
+hit:10002_conv:20005,guilty,"['guilty', ' surprised', ' surprised']",guilty,1
+hit:10004_conv:20008,surprised,"['impressed', ' sentimental', ' surprised']",impressed,3

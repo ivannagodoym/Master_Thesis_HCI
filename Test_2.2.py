@@ -8,7 +8,7 @@ pd.set_option('display.max_colwidth', None)
 #pd.set_option('display.width', None)
 
 #Data Processing:
-data_path = "/Users/ivannagodoymunoz/Library/Mobile Documents/com~apple~CloudDocs/TUM/Master Thesis/Testing"
+data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 data = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",",on_bad_lines='skip')
 thesis_df = pd.DataFrame(data)
 test_sample = thesis_df.head(15)
