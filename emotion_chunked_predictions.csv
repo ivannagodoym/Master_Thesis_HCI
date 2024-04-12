@@ -1,0 +1,22 @@
+conv_id,original_labels,top_3_emotions_responses,top_1_emotion_responses,position_of_original_label
+hit:0_conv:1,sentimental,"['curious', ' nostalgic', ' sad']",curious,
+hit:10000_conv:20000,surprised,"['excited', ' surprised', ' joyful']",excited,2.0
+hit:10000_conv:20001,impressed,"['content', ' confident', ' grateful']",content,
+hit:10002_conv:20005,guilty,"['amused', ' curious', ' playful']",amused,
+hit:10002_conv:20005,guilty,"['guilty', ' embarrassed', ' apprehensive']",guilty,1.0
+hit:10004_conv:20008,surprised,"['proud', ' caring', ' curious']",proud,
+hit:10005_conv:20010,content,"['Speaker: content', ' hopeful', ' surprised']",Speaker: content,
+hit:10005_conv:20011,furious,"['angry', ' annoyed', ' disappointed']",angry,
+hit:10005_conv:20011,furious,"['caring', ' curious', ' disappointed']",caring,
+hit:10006_conv:20012,afraid,"['sympathetic', ' concerned', ' disappointed']",sympathetic,
+hit:10007_conv:20014,nostalgic,"['nostalgic', ' surprised', ' joyful']",nostalgic,1.0
+hit:10008_conv:20016,anxious,"['annoyed', ' anxious', ' disappointed']",annoyed,2.0
+hit:10010_conv:20021,confident,"['excited', ' curious', ' interested']",excited,
+hit:10010_conv:20021,confident,"['excited', ' curious', ' hopeful']",excited,
+hit:10011_conv:20022,anxious,"['excited', ' curious', ' interested']",excited,
+hit:10011_conv:20023,trusting,"['grateful', ' content', ' joyful']",grateful,
+hit:10012_conv:20024,content,"['content', ' proud', ' hopeful']",content,1.0
+hit:10013_conv:20026,guilty,"['angry', ' surprised', ' annoyed']",angry,
+hit:10013_conv:20027,surprised,"['surprised', ' excited', ' anxious']",surprised,1.0
+hit:10014_conv:20028,disappointed,"['disappointed', ' sad', ' embarrassed']",disappointed,1.0
+hit:10014_conv:20029,sad,"['caring', ' confident', ' content']",caring,
