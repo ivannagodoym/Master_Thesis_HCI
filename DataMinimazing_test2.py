@@ -1,5 +1,4 @@
 import pandas as pd
-#conda remove mkl mkl-service
 
 
 # Create an empty DataFrame to store the data

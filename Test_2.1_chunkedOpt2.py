@@ -9,7 +9,8 @@ openai.api_key = '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'
 # Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 chunk_size = 5  # Define the chunk size
-thesis_df_reader = pd.read_csv(f"{data_path}/test2_data.csv", sep=",", chunksize=chunk_size)
+thesis_df_reader = pd.read_csv(f"{data_path}/test2_data.csv", sep=",", chunksize=chunk_size, iterator=True)
+thesis_data = pd.read_csv(f"{data_path}/test2_data.csv", sep=",")
 
 # Function to generate empathetic responses based on situation, emotion, and the first utterance
 def generate_empathetic_response(conv_context, conv_emotion, speaker_utterance):
@@ -42,6 +43,7 @@ for chunk_number, chunky in enumerate(thesis_df_reader):
         context = row['context']
         emotion = row['emotion_label']
         first_utterance = row['speaker_utterance']
+
         empathetic_response = generate_empathetic_response(context, emotion, first_utterance)
 
         new_row = pd.DataFrame({
@@ -54,7 +56,6 @@ for chunk_number, chunky in enumerate(thesis_df_reader):
 
 # Save the dataframe to a CSV file
 responses.to_csv("test21_responses_chunkedOP2.csv", index=False)
-
 
 
 ###OLD CODE:

@@ -8,16 +8,17 @@ pd.set_option('display.max_colwidth', None)
 # Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 chunk_size = 18  # Define the size of each chunk
-thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",", chunksize=chunk_size, iterator=True)
+thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data1.csv", sep=",", chunksize=chunk_size, iterator=True)
 print(thesis_df_reader)
 
 # Iterate over the first chunk and print it
-for chunk in thesis_df_reader:
-    print(chunk)
-    break  # Stop after printing the first chunk
+#for chunk in thesis_df_reader:
+#    print(chunk)
+#    break  # Stop after printing the first chunk
 
 
 openai.api_key = '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'
+
 
 emotion_labels = ["surprised", "excited", "angry", "proud", "sad", "annoyed",
             "grateful", "lonely", "afraid", "terrified", "guilty", "impressed",
@@ -78,8 +79,8 @@ def process_conversations(conversations, emotion_labels, emotions_list):
         conversation_lines = []
         prompt = ""
         prompt = f"A conversation between a {speaker_role} and a {listener_role} will be given. The conversation contains several utterances clearly divided, the {speaker_role} always speaks first and the {listener_role} replies. Always choose the top 3 emotions from the list that best represents the emotions of the speaker. Always start with the most predominant emotion.\n"
-        prompt += "The list of emotions is: " + ", ".join(emotion_labels) + "\n\n"
-        #For selecting the top 3 emotions always give you answers in the following format: ['emotion', ' emotion', ' emotion'].
+        prompt += "The list of emotions is: " + ", ".join(emotion_labels) + "\n"
+        prompt += "Always output your answers in the following format exclusively: emotion,emotion,emotion\n"
 
         # Iterate through each utterance in the conversation
         for i, utterance in enumerate(conversation):
@@ -98,15 +99,15 @@ def process_conversations(conversations, emotion_labels, emotions_list):
 
         # Call the OpenAI API
         response = openai.chat.completions.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo-0125",
             messages=[
                 {
                     "role": "system",
                     "content": prompt
                 }
             ],
-            max_tokens=256,
-            temperature=1,
+            max_tokens=100,#256
+            temperature=0.7, #1
             top_p=1.0,
             frequency_penalty=0.0,
             presence_penalty=0.0,
@@ -142,7 +143,7 @@ def process_conversations(conversations, emotion_labels, emotions_list):
     return original_label_in_top_3_count, original_label_in_top_1_count
 
 # Process a limited number of chunks for testing
-num_chunks_to_process = 20
+num_chunks_to_process = 971
 total_chunks_processed = 0
 total_original_label_in_top_3_count = 0
 total_original_label_in_top_1_count = 0
@@ -173,7 +174,7 @@ df_results = pd.DataFrame({
 })
 
 # Save results to CSV
-df_results.to_csv("emotion_chunked_predictions.csv", index=False)
+df_results.to_csv("EmotionPrediction_GPT35_Data1.csv", index=False)
 
 
 # Print results
