@@ -1,0 +1,29 @@
+conv_id,original_labels,top_3_emotions_responses,top_1_emotion_responses,position_of_original_label
+hit:0_conv:1,sentimental,"['sad', ' nostalgic', ' lonely']",sad,
+hit:11801_conv:23602,anxious,"['anxious', ' hopeful', ' caring']",anxious,1.0
+hit:6900_conv:13800,anticipating,"['hopeful', ' excited', ' proud']",hopeful,
+hit:9770_conv:19540,surprised,"['happy', 'content', 'grateful']",happy,
+hit:2931_conv:5863,grateful,"['grateful', ' thankful', ' annoyed']",grateful,1.0
+hit:5974_conv:11948,anticipating,"['excited', ' hopeful', ' anxious']",excited,
+hit:6510_conv:13021,embarrassed,"['embarrassed', 'sad', 'comforting']",embarrassed,1.0
+hit:8905_conv:17810,anticipating,"['annoyed', 'anxious', 'frustrated']",annoyed,
+hit:9190_conv:18381,embarrassed,"['surprised', 'embarrassed', 'anxious']",surprised,2.0
+hit:5974_conv:11948,anticipating,"['hopeful', 'excited', 'anticipating']",hopeful,3.0
+hit:6662_conv:13324,anxious,"['anxious', 'sad', 'hopeful']",anxious,1.0
+hit:7741_conv:15482,afraid,"['afraid', ' grateful', ' anxious']",afraid,1.0
+hit:8649_conv:17299,disgusted,"['disgusted', ' embarrassed', ' hopeful']",disgusted,1.0
+hit:9838_conv:19677,disgusted,"['disgusted', 'annoyed', 'content']",disgusted,1.0
+hit:10014_conv:20028,disappointed,"['disappointed', ' sad', ' anxious']",disappointed,1.0
+hit:6922_conv:13844,terrified,"['afraid', ' anxious', ' surprised']",afraid,
+hit:7790_conv:15581,anxious,"['anxious', 'hopeful', 'nervous']",anxious,1.0
+hit:787_conv:1575,furious,"['disappointed', 'annoyed', 'sad']",disappointed,
+hit:3963_conv:7926,jealous,"['envious', ' wistful', ' content']",envious,
+hit:5223_conv:10447,proud,"['proud', ' grateful', ' excited']",proud,1.0
+hit:6922_conv:13844,terrified,"['afraid', ' surprised', ' concerned']",afraid,
+hit:7359_conv:14719,disgusted,"['proud', 'surprised', 'anxious']",proud,
+hit:9924_conv:19849,terrified,"['afraid', 'surprised', 'lonely']",afraid,
+hit:11817_conv:23634,sad,"['sad', ' disappointed', ' hopeful']",sad,1.0
+hit:2724_conv:5449,apprehensive,"['sad', ' disappointed', ' hopeful']",sad,
+hit:7524_conv:15049,hopeful,"['excited', 'hopeful', 'sad']",excited,2.0
+hit:9466_conv:18933,annoyed,"['annoyed', ' frustrated', ' concerned']",annoyed,1.0
+hit:9924_conv:19849,terrified,"['anxious', ' afraid', ' surprised']",anxious,
