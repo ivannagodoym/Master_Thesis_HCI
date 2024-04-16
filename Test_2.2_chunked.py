@@ -183,7 +183,7 @@ for chunk_number, chunk in enumerate(thesis_df_reader):
     conv_sample = chunk.groupby('conv_id')['utterance'].apply(list).reset_index().sort_values(by='conv_id')
     # Create a new dataframe to store the listener responses
     chunk_responses = pd.DataFrame(columns=['conv_id', 'Test2.2_response'])
-
+ 
     for index, row in conv_sample.iterrows():
         conv_id = row['conv_id']
         # Get the first utterance of the conversation

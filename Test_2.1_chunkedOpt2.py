@@ -26,7 +26,6 @@ def generate_empathetic_response(conv_context, conv_emotion, speaker_utterance):
     )
     return response.choices[0].message.content
 
-
 responses = pd.DataFrame(columns=['conv_id', 'Test2.1_response'])
 
 for chunk_number, chunky in enumerate(thesis_df_reader):
