@@ -7,8 +7,15 @@ pd.set_option('display.max_colwidth', None)
 
 # Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
-chunk_size = 15  # Define the size of each chunk
-thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data_sorted.csv", sep=",", chunksize=chunk_size, iterator=True)
+chunk_size = 18  # Define the size of each chunk
+thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",", chunksize=chunk_size, iterator=True)
+print(thesis_df_reader)
+
+# Iterate over the first chunk and print it
+for chunk in thesis_df_reader:
+    print(chunk)
+    break  # Stop after printing the first chunk
+
 
 openai.api_key = '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'
 
@@ -33,14 +40,14 @@ emotions_list = []
 total_conversations_processed = 0
 
 # Function to process data chunk
-def process_data_chunk(chunk):
+def process_data_chunk(chunky):
     # Grouping by conv_id
-    conv_sample = chunk.groupby('conv_id')['utterance'].apply(list).reset_index().sort_values(by='conv_id')
+    conv_sample = chunky.groupby('conv_id')['utterance'].apply(list).reset_index().sort_values(by='conv_id')
     # Extract unique conversation IDs from grouped_data
     conversation_ids = conv_sample['conv_id'].tolist()
 
     # Extract emotion labels corresponding to the conversation IDs
-    emotions_list = chunk.groupby('conv_id')['emotion_label'].unique().tolist()
+    emotions_list = chunky.groupby('conv_id')['emotion_label'].unique().tolist()
     emotions_list = np.concatenate(emotions_list).tolist()
 
     # Process the conversations
@@ -72,6 +79,7 @@ def process_conversations(conversations, emotion_labels, emotions_list):
         prompt = ""
         prompt = f"A conversation between a {speaker_role} and a {listener_role} will be given. The conversation contains several utterances clearly divided, the {speaker_role} always speaks first and the {listener_role} replies. Always choose the top 3 emotions from the list that best represents the emotions of the speaker. Always start with the most predominant emotion.\n"
         prompt += "The list of emotions is: " + ", ".join(emotion_labels) + "\n\n"
+        #For selecting the top 3 emotions always give you answers in the following format: ['emotion', ' emotion', ' emotion'].
 
         # Iterate through each utterance in the conversation
         for i, utterance in enumerate(conversation):
@@ -84,9 +92,13 @@ def process_conversations(conversations, emotion_labels, emotions_list):
             # Check if it's the speaker's turn to speak and add the utterance to the prompt
             prompt += f"{role}:\n{utterance}\n"
 
+        # Print the prompt
+        #print("Prompt sent to OpenAI:")
+        #print(prompt)
+
         # Call the OpenAI API
         response = openai.chat.completions.create(
-            model="gpt-3.5-turbo-0125",
+            model="gpt-4",
             messages=[
                 {
                     "role": "system",
@@ -98,7 +110,6 @@ def process_conversations(conversations, emotion_labels, emotions_list):
             top_p=1.0,
             frequency_penalty=0.0,
             presence_penalty=0.0,
-            #stop=["\n"]
         )
 
         # Extract top emotions
@@ -108,6 +119,11 @@ def process_conversations(conversations, emotion_labels, emotions_list):
         # Store API responses for top 3 and top 1 emotions
         top_3_emotions_responses.append(top_3_emotions)
         top_1_emotion_responses.append(top_1_emotion)
+
+        # Print the response from OpenAI
+        #print("Response from OpenAI:")
+        #print(response.choices[0].message.content)
+
 
         # Determine position of original label among predicted labels
         position = None
@@ -126,7 +142,7 @@ def process_conversations(conversations, emotion_labels, emotions_list):
     return original_label_in_top_3_count, original_label_in_top_1_count
 
 # Process a limited number of chunks for testing
-num_chunks_to_process = 6
+num_chunks_to_process = 20
 total_chunks_processed = 0
 total_original_label_in_top_3_count = 0
 total_original_label_in_top_1_count = 0
@@ -138,6 +154,7 @@ for chunk_number, chunk in enumerate(thesis_df_reader):
     chunk_original_label_in_top_3_count, chunk_original_label_in_top_1_count, chunk_total_conversations_processed = process_data_chunk(chunk)
 
     total_chunks_processed += 1
+    print(f"Chunks processed:", {total_chunks_processed})
     total_conversations_processed += chunk_total_conversations_processed
     total_original_label_in_top_3_count += chunk_original_label_in_top_3_count
     total_original_label_in_top_1_count += chunk_original_label_in_top_1_count

@@ -13,16 +13,16 @@ thesis_df = pd.DataFrame(data)
 
 # Grouping by conv_id
 conv_sample = thesis_df.groupby('conv_id')['utterance'].apply(list).reset_index().sort_values(by='conv_id')  # sort_index(). #reset_index(name='utterance')
-test_conv_sample = conv_sample.head(20)
+test_conv_sample = conv_sample.head(18)
 
 # Extract unique conversation IDs from grouped_data
 conversation_ids = conv_sample['conv_id'].tolist()
-test_conv_ids = conversation_ids[:20]
+test_conv_ids = conversation_ids[:18]
 
 # Extract emotion labels corresponding to the conversation IDs
 emotions_list = thesis_df.groupby('conv_id')['emotion_label'].unique().tolist()
 emotions_list = np.concatenate(emotions_list).tolist() #Flatten the list of arrays using numpy.concatenate() and Convert the flattened numpy array to a list
-test_emotions_sample = emotions_list[:20]
+test_emotions_sample = emotions_list[:18]
 
 emotion_labels = ["surprised", "excited", "angry", "proud", "sad", "annoyed",
             "grateful", "lonely", "afraid", "terrified", "guilty", "impressed",

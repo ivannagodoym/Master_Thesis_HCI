@@ -9,23 +9,15 @@ pd.set_option('display.max_colwidth', None)
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
 data = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",",on_bad_lines='skip')
 thesis_df = pd.DataFrame(data)
-test_sample = thesis_df.head(15)
-#print(thesis_df.head())
 
-# Grouping by conv_id
-conv_sample = thesis_df.groupby('conv_id')['utterance'].apply(list).reset_index().sort_values(by='conv_id')  # sort_index(). #reset_index(name='utterance')
-test_conv_sample = conv_sample.head(15)
-#print(test_conv_sample)
+thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",", chunksize=18, iterator=True)
+#test_sample = thesis_df.head(15)
 
-# Extract unique conversation IDs from grouped_data
-conversation_ids = conv_sample['conv_id'].tolist()
+for chunk in thesis_df_reader:
+    print(chunk)
+    break  # Stop after printing the first chunk
 
-# Extract emotion labels corresponding to the conversation IDs
-emotions_list = thesis_df.groupby('conv_id')['emotion_label'].unique().tolist()
-emotions_list = np.concatenate(emotions_list).tolist() #Flatten the list of arrays using numpy.concatenate() and Convert the flattened numpy array to a list
-test_emotions_sample = emotions_list[:15]
-#print(test_emotions_sample)
-
+openai.api_key = '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'
 
 emotion_labels = ["surprised", "excited", "angry", "proud", "sad", "annoyed",
             "grateful", "lonely", "afraid", "terrified", "guilty", "impressed",
@@ -34,9 +26,21 @@ emotion_labels = ["surprised", "excited", "angry", "proud", "sad", "annoyed",
             "devastated", "sentimental", "embarrassed", "caring", "trusting", "ashamed",
             "apprehensive", "faithful"]
 
-openai.api_key = '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'
 
-# Define a function to generate empathetic responses based on situation, emotion, and the first utterance
+# Grouping by conv_id
+conv_sample = thesis_df.groupby('conv_id')['utterance'].apply(list).reset_index().sort_values(by='conv_id')  # sort_index(). #reset_index(name='utterance')
+#test_conv_sample = conv_sample.head(15)
+
+# Extract unique conversation IDs from grouped_data
+conversation_ids = conv_sample['conv_id'].tolist()
+
+# Extract emotion labels corresponding to the conversation IDs
+emotions_list = thesis_df.groupby('conv_id')['emotion_label'].unique().tolist()
+emotions_list = np.concatenate(emotions_list).tolist() #Flatten the list of arrays using numpy.concatenate() and Convert the flattened numpy array to a list
+#test_emotions_sample = emotions_list[:15]
+
+
+#function to generate empathetic responses based on situation, emotion, and the first utterance
 def generate_empathetic_response(context, emotion, first_utterance):
     prompt = f"Consider a situation and the emotion of a speaker. Situation: {context}\nEmotion: {emotion}\nAct as the listener and reply to the speaker.\nSpeaker: {first_utterance}\nListener:"
     response = openai.chat.completions.create(
@@ -52,11 +56,10 @@ def generate_empathetic_response(context, emotion, first_utterance):
     #print(prompt)
     return response.choices[0].message.content
 
-
 # Create a new dataframe to store the listener responses
 test21_responses = pd.DataFrame(columns=['conv_id', 'Test2.1_response'])
 
-for index, row in test_conv_sample.iterrows():
+for index, row in conv_sample.iterrows(): #test_conv_sample.iterrows():
     conv_id = row['conv_id']
     conversation_context = thesis_df.loc[thesis_df['conv_id'] == conv_id, 'context'].iloc[0]
 
@@ -68,10 +71,6 @@ for index, row in test_conv_sample.iterrows():
 
     # Extract first utterance for the empathetic response
     first_utterance = row['utterance'][0]
-
-    #print(conversation_context)
-    #print(emotion)
-    #print(first_utterance)
 
     # Generate empathetic response
     empathetic_response = generate_empathetic_response(conversation_context, emotion, first_utterance)

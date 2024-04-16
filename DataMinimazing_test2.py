@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # Create an empty DataFrame to store the data
-test2_data_results = pd.DataFrame(
+test2_data = pd.DataFrame(
     columns=['conv_id', 'emotion_label', 'context', 'speaker_utterance', 'original_listener_response'])
 
 #Thesis dataframe
@@ -34,27 +34,7 @@ for conv_id, group in thesis_df.groupby('conv_id'):
         'original_listener_response': [first_listener_utterance]
     })
 
-    # Append the new row to the test2_data_results DataFrame
-    test2_data_results = pd.concat([test2_data_results, new_row], ignore_index=True)
+    # Append the new row to the test2_data DataFrame
+    test2_data = pd.concat([test2_data, new_row], ignore_index=True)
 
-
-# Load Test2.1 responses
-test21_responses = pd.read_csv('test21_responses_chunked.csv')
-
-# Merge Test2.1 responses into test2_data_results based on 'conv_id'
-test2_data_results = pd.merge(test2_data_results, test21_responses, on='conv_id', how='left')
-
-# Load Test2.2 responses
-test22_responses = pd.read_csv('test22_responses_chunked.csv')
-
-# Merge Test2.2 responses into test2_data based on 'conv_id'
-test2_data_results = pd.merge(test2_data_results, test22_responses, on='conv_id', how='left')
-
-test2_data_results = test2_data_results.dropna()
-test2_data_results = test2_data_results.drop_duplicates(subset='conv_id')
-
-test2_data_results.to_csv('test2_data_results.csv', index=False)
-
-# Print the updated DataFrame
-print(test2_data_results)
-
+test2_data.to_csv('test2_data.csv', index=False)
