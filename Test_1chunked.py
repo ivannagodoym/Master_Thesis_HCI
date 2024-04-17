@@ -7,8 +7,8 @@ pd.set_option('display.max_colwidth', None)
 
 # Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
-chunk_size = 18  # Define the size of each chunk
-thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data1.csv", sep=",", chunksize=chunk_size, iterator=True)
+chunk_size = 30  # Define the size of each chunk
+thesis_df_reader = pd.read_csv(f"{data_path}/thesis_data.csv", sep=",", chunksize=chunk_size, iterator=True)
 print(thesis_df_reader)
 
 # Iterate over the first chunk and print it
@@ -77,9 +77,10 @@ def process_conversations(conversations, emotion_labels, emotions_list):
 
         # Initialize variables to store conversation lines and emotions
         conversation_lines = []
-        prompt = ""
-        prompt = f"A conversation between a {speaker_role} and a {listener_role} will be given. The conversation contains several utterances clearly divided, the {speaker_role} always speaks first and the {listener_role} replies. Always choose the top 3 emotions from the list that best represents the emotions of the speaker. Always start with the most predominant emotion.\n"
-        prompt += "The list of emotions is: " + ", ".join(emotion_labels) + "\n"
+        #prompt = ""
+        prompt = f"A conversation between a {speaker_role} and a {listener_role} will be given. The conversation contains several utterances clearly divided, the {speaker_role} always speaks first and the {listener_role} replies.\n"
+        prompt += f"Consider exclusively the following list of emotions for labeling: surprised, excited, angry, proud, sad, annoyed, grateful, lonely, afraid, terrified, guilty, impressed, disgusted, hopeful, confident, furious, anxious, anticipating, joyful, nostalgic, disappointed, prepared, jealous, content, devastated, sentimental, embarrassed, caring, trusting, ashamed, apprehensive, faithful\n"
+        prompt += f"Always choose the top 3 emotions that best represents the emotions of the speaker and only use emotions from the given list. Always start with the most predominant emotion. Do not use an emotion that is not part of the list.\n"
         prompt += "Always output your answers in the following format exclusively: emotion,emotion,emotion\n"
 
         # Iterate through each utterance in the conversation
@@ -106,8 +107,8 @@ def process_conversations(conversations, emotion_labels, emotions_list):
                     "content": prompt
                 }
             ],
-            max_tokens=100,#256
-            temperature=0.7, #1
+            max_tokens=256, #100
+            temperature=0.7,
             top_p=1.0,
             frequency_penalty=0.0,
             presence_penalty=0.0,
@@ -143,7 +144,7 @@ def process_conversations(conversations, emotion_labels, emotions_list):
     return original_label_in_top_3_count, original_label_in_top_1_count
 
 # Process a limited number of chunks for testing
-num_chunks_to_process = 971
+num_chunks_to_process = 1434
 total_chunks_processed = 0
 total_original_label_in_top_3_count = 0
 total_original_label_in_top_1_count = 0
@@ -174,7 +175,8 @@ df_results = pd.DataFrame({
 })
 
 # Save results to CSV
-df_results.to_csv("EmotionPrediction_GPT35_Data1.csv", index=False)
+df_results.to_csv("EmotionPrediction_GPT35.csv", index=False)
+
 
 
 # Print results
