@@ -6,7 +6,7 @@ test2_results_GPT4 = pd.DataFrame(
 
 #Thesis dataframe
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
-thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
+thesis_df = pd.read_csv(f"{data_path}/secondsample_test2.csv", sep=",",on_bad_lines='skip')
 
 # Iterate through each conversation in thesis_df
 for index, row in thesis_df.iterrows():
@@ -30,18 +30,18 @@ for index, row in thesis_df.iterrows():
 
 
 # Load Test2.1 responses
-test21_GPT4responses = pd.read_csv('test21_responses_GPT4.csv')
+test21_GPT4responses = pd.read_csv('test21_responses_GPT4_2.csv')
 
 # Merge Test2.1 responses into test2_data_results based on 'conv_id'
 test2_results_GPT4 = pd.merge(test2_results_GPT4, test21_GPT4responses, on='conv_id', how='left')
 
 # Load Test2.2 responses
-test22_GPT4responses = pd.read_csv('test22_responses_GPT4.csv')
+test22_GPT4responses = pd.read_csv('test22_responses_GPT4_2.csv')
 
 # Merge Test2.2 responses into test2_data based on 'conv_id'
 test2_results_GPT4 = pd.merge(test2_results_GPT4, test22_GPT4responses, on='conv_id', how='left')
 
-test2_results_GPT4.to_csv('test2_results_GPT4.csv', index=False)
+test2_results_GPT4.to_csv('test2_results_GPT4_2.csv', index=False)
 
 # Print the updated DataFrame
 print(test2_results_GPT4)

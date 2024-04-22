@@ -7,7 +7,9 @@ pd.set_option('display.max_colwidth', None)
 
 #Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
-thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
+#thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
+thesis_df = pd.read_csv(f"{data_path}/secondsample_test2.csv", sep=",",on_bad_lines='skip')
+
 
 openai.api_key = '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'
 
@@ -56,4 +58,5 @@ for index, row in thesis_df.iterrows():
     test21_responses = pd.concat([test21_responses, new_row], ignore_index=True)
 
 # Save the dataframe to a CSV file
-test21_responses.to_csv("test21_responses_GPT35.csv", index=False)
+#test21_responses.to_csv("test21_responses_GPT35.csv", index=False)
+test21_responses.to_csv("test21_responses_GPT35_2.csv", index=False)

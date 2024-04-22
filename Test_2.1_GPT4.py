@@ -7,8 +7,9 @@ pd.set_option('display.max_colwidth', None)
 
 #Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
-thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
-#test = thesis_df.head(15)
+#thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
+thesis_df = pd.read_csv(f"{data_path}/secondsample_test2.csv", sep=",",on_bad_lines='skip')
+
 
 openai.api_key = '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'
 
@@ -24,7 +25,7 @@ emotion_labels = ["surprised", "excited", "angry", "proud", "sad", "annoyed",
 def generate_empathetic_response(context, emotion, first_utterance):
     prompt = f"Consider a situation and the emotion of a speaker. Situation: {context}\nEmotion: {emotion}\nAct as the listener and reply to the speaker.\nSpeaker: {first_utterance}\nListener:"
     response = openai.chat.completions.create(
-        model= "gpt-4-turbo-2024-04-09",  # "gpt-4",
+        model= "gpt-4-turbo-2024-04-09",
         messages=[
             {"role": "system", "content": prompt}],
         temperature=0.7,
@@ -39,7 +40,11 @@ def generate_empathetic_response(context, emotion, first_utterance):
 # Create a new dataframe to store the listener responses
 test21_responses = pd.DataFrame(columns=['conv_id', 'Test2.1_response_GPT4'])
 
+counter = 0
+
 for index, row in thesis_df.iterrows():
+    counter += 1
+    print(counter)
     conv_id = row['conv_id']
     conversation_context = row['context']
     emotion = row['emotion_label']
@@ -57,4 +62,5 @@ for index, row in thesis_df.iterrows():
     test21_responses = pd.concat([test21_responses, new_row], ignore_index=True)
 
 # Save the dataframe to a CSV file
-test21_responses.to_csv("test21_responses_GPT4.csv", index=False)
+#test21_responses.to_csv("test21_responses_GPT4.csv", index=False)
+test21_responses.to_csv("test21_responses_GPT4_2.csv", index=False)

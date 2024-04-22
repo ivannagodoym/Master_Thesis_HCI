@@ -8,8 +8,9 @@ pd.set_option('display.max_colwidth', None)
 
 #Data Processing:
 data_path = "/Users/ivannagodoymunoz/Desktop/Master Thesis/Testing"
-thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
-test = thesis_df.head(10)
+#thesis_df = pd.read_csv(f"{data_path}/test2_data_sample500.csv", sep=",",on_bad_lines='skip')
+thesis_df = pd.read_csv(f"{data_path}/secondsample_test2.csv", sep=",",on_bad_lines='skip')
+
 
 openai.api_key = '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'
 
@@ -32,7 +33,11 @@ def generate_listener_response(speaker_utterance):
 # Create a new dataframe to store the listener responses
 test22_responses = pd.DataFrame(columns=['conv_id', 'Test2.2_response_GPT4'])
 
-for index, row in thesis_df.iterrows(): #test_conv_sample.iterrows():
+counter = 0
+
+for index, row in thesis_df.iterrows():
+    counter += 1
+    print(counter)
     conv_id = row['conv_id']
     first_utterance = row['speaker_utterance']
     listener_response = generate_listener_response(first_utterance)
@@ -45,5 +50,5 @@ for index, row in thesis_df.iterrows(): #test_conv_sample.iterrows():
     test22_responses = pd.concat([test22_responses, new_row], ignore_index=True)
 
 # Save the dataframe to a CSV file
-test22_responses.to_csv('test22_responses_GPT4.csv', index=False)
-
+#test22_responses.to_csv('test22_responses_GPT4.csv', index=False)
+test22_responses.to_csv('test22_responses_GPT4_2.csv', index=False)

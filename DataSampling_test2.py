@@ -39,6 +39,8 @@ for conv_id, group in thesis_df.groupby('conv_id'):
 
 test2_data.to_csv('test2_data.csv', index=False)
 
+
 #Get a sample of 500 conversations
 test2_data_sample = test2_data.sample(n=500, random_state=42)
 test2_data_sample.to_csv('test2_data_sample500.csv', index=False)
+
