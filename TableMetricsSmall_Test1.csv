@@ -1,0 +1,4 @@
+Metric,Precision,Recall,F1-Score
+Accuracy,0.41,0.41,0.41
+Macro-Average,0.51,0.38,0.36
+Weighted-Average,0.53,0.41,0.38

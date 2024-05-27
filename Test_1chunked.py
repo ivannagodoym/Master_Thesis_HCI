@@ -174,6 +174,10 @@ df_results = pd.DataFrame({
     "position_of_original_label": position_of_original_label
 })
 
+#drop duplicates
+df_results = df_results.drop_duplicates(subset='conv_id')
+
+
 # Save results to CSV
 df_results.to_csv("EmotionPrediction_GPT35.csv", index=False)
 

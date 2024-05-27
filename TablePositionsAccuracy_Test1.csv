@@ -1,0 +1,5 @@
+Position,Accuracy
+Prediction as 1st Emotion,0.41
+Prediction as 2nd Emotion,0.14
+Prediction as 3rd Emotion,0.06
+Prediction in Top 3 Emotions,0.927

@@ -1,0 +1,36 @@
+,precision,recall,f1-score,support
+afraid,0.33,0.42,0.37,175
+angry,0.29,0.64,0.4,195
+annoyed,0.45,0.4,0.42,138
+anticipating,0.67,0.01,0.02,247
+anxious,0.22,0.46,0.29,160
+apprehensive,0.0,0.0,0.0,127
+ashamed,0.39,0.14,0.21,173
+caring,0.8,0.18,0.29,188
+confident,0.48,0.11,0.18,282
+content,0.56,0.31,0.4,156
+devastated,0.46,0.49,0.48,194
+disappointed,0.38,0.63,0.47,206
+disgusted,0.8,0.69,0.74,229
+embarrassed,0.65,0.73,0.69,163
+excited,0.2,0.87,0.33,310
+faithful,0.57,0.1,0.17,132
+furious,0.0,0.0,0.0,160
+grateful,0.33,0.62,0.43,193
+guilty,0.66,0.67,0.66,241
+hopeful,0.35,0.42,0.38,242
+impressed,0.88,0.31,0.46,239
+jealous,0.94,0.56,0.7,178
+joyful,0.34,0.07,0.11,176
+lonely,0.92,0.64,0.75,261
+nostalgic,0.58,0.8,0.68,245
+prepared,0.86,0.1,0.19,240
+proud,0.29,0.69,0.41,271
+sad,0.31,0.55,0.4,246
+sentimental,0.64,0.05,0.09,193
+surprised,0.59,0.34,0.43,362
+terrified,0.53,0.24,0.33,217
+trusting,0.94,0.08,0.15,189
+accuracy,0.41,0.41,0.41,6728
+macro avg,0.51,0.38,0.36,6728
+weighted avg,0.53,0.41,0.38,6728
